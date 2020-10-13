@@ -1,0 +1,32 @@
+// 字符串转日期Date
+var stringToDate = function (dateStr, separator) {
+  if (!separator) {
+    separator = "-";
+  }
+  var dateArr = dateStr.split(separator);
+  var year = parseInt(dateArr[0]);
+  var month;
+  if (dateArr[1].indexOf("0") == 0) {
+
+    month = parseInt(dateArr[1].substring(1));
+
+  }
+  else {
+    month = parseInt(dateArr[1]);
+  }
+  var day = parseInt(dateArr[2]);
+  var date = getDate(year, month - 1, day);
+  return date;
+}
+
+
+// 计算两个日期相差的天数
+var getDaysBetween = function (startDate, endDate) {
+  var days = (endDate - startDate) / (1 * 24 * 60 * 60 * 1000);
+  // alert(days);
+  return days;
+}
+module.exports = {
+  getDaysBetween: getDaysBetween,
+  stringToDate: stringToDate
+};

@@ -1,0 +1,195 @@
+<!--pages/upDateHouseInfo/upDateHouseInfo.wxml-->
+
+
+<view class="form-input-item-container-view">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(229,57,53,1);font-weight:500;">*</span>
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">位置：</span>
+            </view>
+<label class="value-input">{{model.address}}</label>
+</view>
+
+
+<view class="form-input-item-container-view">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(229,57,53,1);font-weight:500;">*</span>
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">月租金：</span>
+            </view>
+<input class="value-input" placeholder="请输入房屋月租金" bindfocus="inputHouseRentPriceFocus" bindinput="inputHouseRentPriceChange" bindblur="inputHouseRentPriceBlur" type="number" value="{{model.rentPrice}}"></input>
+</view>
+
+<view class="form-input-item-container-view">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+                
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">是否需要押金：</span>
+            </view>
+            <view class="radio-container">
+            <radio-group bindchange="clickToChangeDepositStatus">
+<label class="radio" style="margin-left:40rpx;">
+      <radio value="r1" checked="{{model.isNeedDeposit}}" />是
+    </label>
+    <label class="radio" style="margin-left:40rpx;">
+      <radio value="r2" checked="{{!model.isNeedDeposit}}"  />否
+    </label>
+            </radio-group>
+            
+            </view>
+
+</view>
+<view class="form-input-item-container-view" >
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(229,57,53,1);font-weight:500;">*</span>
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">交租周期：</span>
+            </view>
+
+</view>
+<view class="value-input" >
+<picker  value="{{model.payRange}}" range="{{payRangeList}}"  bindchange="bindPayRangeChange" >
+<!-- <view class="picker">
+      {{payRange}}
+    </view> -->
+              <label class="weui-input" >{{model.payRange?model.payRange : '请选择交租周期'}}</label>
+            </picker>
+</view>
+
+
+<view class="form-input-item-container-view">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+                
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">是否已出租：</span>
+            </view>
+            <view class="radio-container">
+            <radio-group bindchange="clickToChange">
+<label class="radio" style="margin-left:40rpx;">
+      <radio value="r1" checked="{{model.isRent}}" />是
+    </label>
+    <label class="radio" style="margin-left:40rpx;">
+      <radio value="r2" checked="{{!model.isRent}}"  />否
+    </label>
+            </radio-group>
+            
+            </view>
+
+</view>
+
+
+
+<view class="form-input-item-container-view" hidden="{{!model.isRent}}">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(229,57,53,1);font-weight:500;">*</span>
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">租房起始时间：</span>
+            </view>
+
+</view>
+<view class="value-input" hidden="{{!model.isRent}}">
+<picker mode="date" value="{{model.rentStartTime}}"  bindchange="bindDateChange" >
+              <label class="weui-input" >{{model.rentStartTime?model.rentStartTime:'请选择时间'}}</label>
+            </picker>
+</view>
+
+
+
+<view class="form-input-item-container-view" hidden="{{!model.isRent}}">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">租房时长(月)：</span>
+            </view>
+<input class="value-input" placeholder="请输入租房时长" bindfocus="inputHouseRentTimeRangeFocus" bindinput="inputHouseRentTimeRangeChange" bindblur="inputHouseRentTimeRangeBlur" type="number" value="{{model.rentTime}}"></input>
+</view>
+
+<view class="form-input-item-container-view">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+<span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(229,57,53,1);font-weight:500;">*</span>
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">房东姓名：</span>
+            </view>
+<input class="value-input" placeholder="请输入房东姓名" bindfocus="inputHouseOwnerNameFocus" bindinput="inputHouseOwnerNameChange" bindblur="inputHouseOwnerNameBlur" type="text" value="{{model.houseOwner}}"></input>
+</view>
+
+
+
+
+
+
+<view class="form-input-item-container-view">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+                
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">房东证件号码：</span>
+            </view>
+<input class="value-input" placeholder="请输入证件号码" bindfocus="inputHouseOwnerIDCardNumFocus" bindinput="inputHouseOwnerIDCardNumChange" bindblur="inputHouseOwnerIDCardNumBlur" type="text" value="{{model.houseOwnerIDNum}}"></input>
+</view>
+
+
+<view class="form-input-item-container-view">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+                
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">房东电话号码：</span>
+            </view>
+<input class="value-input" placeholder="请输入房东电话号码" bindfocus="inputHouseOwnerPhoneNumFocus" bindinput="inputHouseOwnerPhoneNumChange" bindblur="inputHouseOwnerPhoneNumBlur" type="number" value="{{model.ownerPhone}}"></input>
+</view>
+
+<view class="form-input-item-container-view" hidden="{{!model.isRent}}">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(229,57,53,1);font-weight:500;">*</span>
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">租客姓名：</span>
+            </view>
+<input class="value-input" placeholder="请输入租客姓名" bindfocus="inputHouseRenterNameFocus" bindinput="inputHouseRenterNameChange" bindblur="inputHouseRenterNameBlur" type="text" value="{{model.renter}}"></input>
+</view>
+
+
+<view class="form-input-item-container-view" hidden="{{!model.isRent}}">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+                
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">租客证件号码：</span>
+            </view>
+<input class="value-input" placeholder="请输入证件号码" bindfocus="inputHouseRenterIDCardNumFocus" bindinput="inputHouseRenterIDCardNumChange" bindblur="inputHouseRenterIDCardNumBlur" type="text" value="{{model.renterIDNum}}"></input>
+</view>
+
+
+
+<view class="form-input-item-container-view" hidden="{{!model.isRent}}">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+                
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">租客电话号码：</span>
+            </view>
+<input class="value-input" placeholder="请输入租客电话号码" bindfocus="inputHouseRenterPhoneNumFocus" bindinput="inputHouseRenterPhoneNumChange" bindblur="inputHouseRenterPhoneNumBlur" type="number" value="{{model.renterPhone}}"></input>
+</view>
+
+
+
+<view class="form-input-item-container-view">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+                
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">水表号：</span>
+            </view>
+<input class="value-input" placeholder="请输入水表号" bindfocus="inputHouseWaterMeterFocus" bindinput="inputHouseWaterMeterChange" bindblur="inputHouseWaterMeterBlur" type="number" value="{{model.waterNum}}"></input>
+</view>
+
+<view class="form-input-item-container-view">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+                
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">电表号：</span>
+            </view>
+<input class="value-input" placeholder="请输入电表号" bindfocus="inputHouseElectricMeterFocus" bindinput="inputHouseElectricMeterChange" bindblur="inputHouseElectricMeterBlur" type="number" value="{{model.electricNum}}"></input>
+</view>
+
+<view class="form-input-item-container-view">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+                
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">燃气号：</span>
+            </view>
+<input class="value-input" placeholder="请输入燃气号" bindfocus="inputHouseGasMeterFocus" bindinput="inputHouseGasMeterChange" bindblur="inputHouseGasMeterBlur" type="number" value="{{model.gasNum}}"></input>
+</view>
+
+
+
+
+<view class="form-input-item-container-view">
+<view style="margin-left: 15px;margin-top: 12px;text-align: left;">
+              <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(229,57,53,1);font-weight:500;">*</span>  
+                <span style="font-size: 14px;flex-wrap: wrap;text-align: left;line-height: 14px;color: rgba(0, 0, 0, 1);font-weight:500;">房屋描述：</span>
+            </view>
+<textarea class="inputHouseDescription" maxlength="-1" placeholder="请输入房屋描述" bindfocus="textAreaInputFocus" bindinput="textAreaInputChange" bindblur="textAreaInputBlur" value="{{model.houseDesc}}"  disable-default-padding="true"></textarea>
+</view>
+
+<view class="bottom-action-container-view">
+            <label class="register-btn" bindtap="tapToUpdateHouseInfo">更新</label>
+        </view>

@@ -1,0 +1,4 @@
+<!--pages/homePage/homePage.wxml-->
+<view class="common-btn" bindtap="tapToUploadHouseInfo" hidden="{{!isHaveAddAuth}}">上传房屋信息</view>
+
+<view class="common-btn" bindtap="tapToQueryHouseInfo">查询房屋信息</view>

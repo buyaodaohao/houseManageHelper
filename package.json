@@ -1,0 +1,17 @@
+{
+  "name": "housemanagerhelper",
+  "version": "1.0.0",
+  "description": "房屋管理",
+  "main": "index.js",
+  "dependencies": {
+    "js-base64": "^3.5.2",
+    "weui-miniprogram": "^1.0.5",
+    "wx-server-sdk": "^2.3.0"
+  },
+  "devDependencies": {},
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "kekege",
+  "license": "ISC"
+}

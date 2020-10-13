@@ -1,0 +1,25 @@
+<!--pages/lookHouseInfo/lookHouseInfo.wxml-->
+<!--pages/upDateHouseInfo/upDateHouseInfo.wxml-->
+
+
+<view class="item-container">
+<label class="common-label">{{'房东：' + model.houseOwner}}</label>
+<label class="common-label">{{'房东证件号码：' + (model.houseOwnerIDNum?model.houseOwnerIDNum:'--')}}</label>
+<label class="common-label">{{'房东电话：' + (model.ownerPhone?model.ownerPhone:'--')}}</label>
+<label class="common-label">{{'月租金：' + (model.rentPrice?model.rentPrice:'--') + '元/月'}}</label>
+<label class="common-label">{{'付租周期：' + (model.payRange?model.payRange:'--')}}</label>
+<label class="common-label" hidden="{{!model.isRent}}">{{'租赁状态：' + (model.isRent?'已出租':'未出租')}}</label>
+<label class="common-label" hidden="{{!model.isRent}}">{{'租客：' + model.renter}}</label>
+<label class="common-label" hidden="{{!model.isRent}}">{{'租客证件号：' + (model.renterIDNum?model.renterIDNum:'--')}}</label>
+<label class="common-label" hidden="{{!model.isRent}}">{{'租客电话：' + (model.renterPhone?model.renterPhone:'--')}}</label>
+<label class="common-label" hidden="{{!model.isRent}}">{{'租房起始时间：' + model.rentStartTime}}</label>
+<label class="common-label" hidden="{{!model.isRent}}">{{'租房时长(月)：' + (model.rentTime?model.rentTime:'--')}}</label>
+<label class="common-label">{{'水表号：' + (model.waterNum?model.waterNum:'--')}}</label>
+<label class="common-label">{{'电表号：' + (model.electricNum?model.electricNum:'--')}}</label>
+<label class="common-label">{{'燃气号：' + (model.gasNum?model.gasNum:'--')}}</label>
+<label class="common-label">{{'房屋描述：' + model.houseDesc}}</label>
+<label class="common-label" style="margin-bottom:20rpx;">{{'地址：' + model.address}}</label>
+</view>
+
+
+

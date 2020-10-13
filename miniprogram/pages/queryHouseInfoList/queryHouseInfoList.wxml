@@ -1,0 +1,39 @@
+<!--pages/queryHouseInfoList/queryHouseInfoList.wxml-->
+
+<wxs src="../common/lib/tool.wxs" module="tool"/>
+<view class="kind-switch-container">
+<block wx:for="{{kindList}}" wx:key="unique">
+<label class="item-value-normal {{currentKind==item.title?'item-value-selected':''}}" data-model="{{item}}" bindtap="selectOneKind">{{item.title}}</label>
+
+</block>
+
+</view>
+
+
+<view class="table-view-container">
+ <image src="../../../../../images/no-data-icon.png" class="no-data-img" wx:if="{{showDataList.length == 0}}"></image>
+<view class="item-container {{tool.getDaysBetween(tool.stringToDate(nowDate),tool.stringToDate(item.nextPayDate)) < 0 && item.isRent && !item.isPayRent ? 'item-container-debt':''}}" wx:for="{{showDataList}}" wx:key="unique" bindtap="tapToModifyHouseInfo" data-model="{{item}}">
+<label class="address-label">{{item.address}}</label>
+<label class="common-label">{{'房东：' + item.houseOwner}}</label>
+<label class="common-label">{{'月租金：' + (item.rentPrice?item.rentPrice:'--') + '元/月'}}</label>
+<label class="common-label" hidden="{{currentKind!='未出租'}}">{{'是否需要押金：' + (item.isNeedPosit?'是':'否')}}</label>
+<label class="common-label" hidden="{{currentKind!='未出租'}}">{{'付租周期：' + (item.payRange?item.payRange:'--')}}</label>
+<label class="common-label" hidden="{{currentKind=='未出租'}}">{{'租客：' + item.renter}}</label>
+<label class="common-label" style="margin-bottom:20rpx;">{{'房屋描述：' + item.houseDesc}}</label>
+
+
+<view style="display:flex;flex-direction: row;width:calc(100% - 40rpx);margin-left:20rpx;margin-bottom:20rpx;" wx:if="{{tool.getDaysBetween(tool.stringToDate(nowDate),tool.stringToDate(item.nextPayDate)) <= 10 && item.isRent && !item.isPayRent}}">
+<span style="font-size: 26rpx;font-family: PingFang SC;font-weight: 500;color: #87898D;line-height: 40rpx;" wx:if="{{tool.getDaysBetween(tool.stringToDate(nowDate),tool.stringToDate(item.nextPayDate)) >= 0}}">距交租还有</span>
+<span style="font-size: 26rpx;font-family: PingFang SC;font-weight: 500;color: #87898D;line-height: 40rpx;" wx:if="{{tool.getDaysBetween(tool.stringToDate(nowDate),tool.stringToDate(item.nextPayDate)) < 0}}">已逾期</span>
+<span style="font-size: 26rpx;font-family: PingFang SC;font-weight: 500;color: rgba(229,57,53,1);line-height: 40rpx;">{{tool.getDaysBetween(tool.stringToDate(nowDate),tool.stringToDate(item.nextPayDate)) < 0 ? tool.getDaysBetween(tool.stringToDate(nowDate),tool.stringToDate(item.nextPayDate)) * (-1) : tool.getDaysBetween(tool.stringToDate(nowDate),tool.stringToDate(item.nextPayDate))}}</span>
+                <span style="font-size: 26rpx;font-family: PingFang SC;font-weight: 500;color: #87898D;line-height: 40rpx;"> 天</span>
+</view>
+<label class="sure-btn" catchtap="tapToUpdateRentPayStatus" data-model="{{item}}" wx:if="{{!item.isPayRent&&item.isRent}}">确认已交租</label>
+
+</view>
+
+</view>
+
+<view class="bottom-action-container-view" bindtap="tapToAddHouseInfo">
+            <label class="register-btn" >添加房产信息</label>
+        </view>
